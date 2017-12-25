@@ -53,9 +53,16 @@
   app.controller('AddProduct', function(){
     this.product = {};
     this.addProduct = function(product){
-      //products.push(product); // HOW TO GET TO PRODUCTS ARRAY FROM STORE CONTROLLER???
-      alert(product+"added!");
-      this.product = {}; // clears up the form
+      console.log(product);
+      $http.post('products.json', product).then(successCallback, errorCallback);
+
+    function successCallback(response){
+        //success code
+      alert(product + 'added!');
+    }
+    function errorCallback(error){
+        //error code
+        console.log("Data:"+error);
     }
   });
 

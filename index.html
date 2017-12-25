@@ -1,0 +1,84 @@
+<!Doctype html>
+<html ng-app="store"> <!-- Loads the module when the page loads-->
+<head>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+
+<body>
+  <!-- TOP NAVIGATION -->
+  <section ng-controller = "TabController as page">
+    <ul class="nav nav-tabs justify-content-center">
+      <li class="nav-item" >
+        <a href class="nav-link"  ng-click="page.selectTab('home')" ng-class="{ active:page.isSelected('home')}">Home</a>
+      </li>
+      <li class="nav-item" >
+        <a href class="nav-link"  ng-click="page.selectTab('product_page')" ng-class="{ active:page.isSelected('product_page')}">Product Page</a>
+      </li>
+      <li class="nav-item" >
+        <a href class="nav-link"  ng-click="page.selectTab('add_product')" ng-class="{ active:page.isSelected('add_product')}">Add product</a>
+      </li>
+      <li class="nav-item" >
+        <a class="nav-link" href ng-click="page.selectTab('my_orders')" ng-class="{active: page.isSelected('my_orders')}">My orders</a>
+      </li>
+    </ul>
+
+    <div ng-show="page.isSelected('product_page')">
+      <h1>Product Page</h1>
+    </div>
+
+    <!-- ADD PRODUCT CONTROLLER -->
+    <div ng-controller = "AddProduct as addProductCtrl" ng-show="page.isSelected('add_product')">
+      <h1>Add Product</h1>
+      <form name="addProductForm" ng-submit="addProductForm.$valid && addProductCtrl.addProduct(product)" novalidate>
+        Product name:<br>
+        <input type="text" ng-model="addProductCtrl.product.name" required><br>
+        Price:<br>
+        <input type="number" ng-model="addProductCtrl.product.price" required><br>
+        Image URL:<br>
+        <input type="url" ng-model="addProductCtrl.product.imgURL" required><br>
+        Description:<br>
+        <textarea rows="4" cols="30" ng-model="addProductCtrl.product.description" required></textarea><br>
+        <div> addProductForm is {{addProductForm.$valid}}</div>
+        <input type="submit" class="btn btn-primary" value="Add" />
+      </form>
+
+      <h3>Preview</h3>
+      <blockquote>
+        <div ng-show="addProductCtrl.product.name"><b>{{addProductCtrl.product.name}}</b></div>
+        <div ng-show="addProductCtrl.product.price"><i>{{addProductCtrl.product.price | currency}}</i></div>
+        <div ng-show="addProductCtrl.product.imgURL"><img ng-src="{{addProductCtrl.product.imgURL}}"/></div>
+        <div ng-show="addProductCtrl.product.description">
+          Description:<br>
+        {{addProductCtrl.product.description}}
+      </div>
+      </blockquote>
+
+
+
+    </div>
+    <div  ng-show="page.isSelected('my_orders')">
+      <h1>My orders</h1>
+    </div>
+      <!-- TOP NAVIGATION -->
+    <div ng-controller = "StoreController as store" ng-show="page.isSelected('home')" >
+      <div ng-repeat="product in store.products | orderBy: 'price'"> <!-- order by price -->
+      <h1>{{product.name}}</h1>
+      <h2>{{product.price | currency}}</h2>
+      <img ng-src="{{product.imgUrl}}" alt="{{product.name}}"/>
+      <p>{{product.description}}</p>
+      <button ng-show="product.canPurchase">Buy</button>
+      <button ng-show="!product.canPurchase">Not available</button>
+    </div>
+
+  </section>
+
+
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+{"products": [
+{"name": "short", "price": "5", "imgUrl": "", "description":"best toy"},
+{"name": "flipflops", "price": "7", "imgUrl": "", "description":"beach flipflops"},
+{"name": "car", "price": "23", "imgUrl": "", "description":"remote control car"},
+{"name": "pencil", "price": "2.4", "imgUrl": "", "description":"mechanical pencil"}]
+}

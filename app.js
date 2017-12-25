@@ -29,7 +29,7 @@
 
     function successCallback(data){
         //success code
-        console.log("Response:"+data);
+        console.log(data);
     }
     function errorCallback(error){
         //error code

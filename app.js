@@ -52,9 +52,10 @@
 
   app.controller('AddProduct', ['$http', function($http){
     this.product = {};
-    this.addProduct = function(product){
-      console.log(product);
-      $http.post('products.json', product).then(successCallback, errorCallback);
+    this.addProduct = function(addProduct){
+      console.log(addProduct);
+      
+      $http.post('products.json', addProduct).then(successCallback, errorCallback);
       function successCallback(response){
           //success code
         alert(product + 'added!');
@@ -65,7 +66,7 @@
       }
     }
 
-    this.product = {};
+   // this.product = {};
   }]);
 
 

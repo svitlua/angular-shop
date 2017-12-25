@@ -50,7 +50,7 @@
 
   }]);
 
-  app.controller('AddProduct', function(){
+  app.controller('AddProduct', ['$http', function($http){
     this.product = {};
     this.addProduct = function(product){
       console.log(product);
@@ -66,7 +66,7 @@
     }
 
     this.product = {};
-  });
+  }]);
 
 
 })();

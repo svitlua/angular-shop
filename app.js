@@ -55,16 +55,17 @@
     this.addProduct = function(product){
       console.log(product);
       $http.post('products.json', product).then(successCallback, errorCallback);
+      function successCallback(response){
+          //success code
+        alert(product + 'added!');
+      }
+      function errorCallback(error){
+          //error code
+          console.log("Data:"+error);
+      }
+    }
 
-    function successCallback(response){
-        //success code
-      alert(product + 'added!');
-    }
-    function errorCallback(error){
-        //error code
-        console.log("Data:"+error);
-    }
-    }
+    this.product = {};
   });
 
 

@@ -27,9 +27,10 @@
 
     $http.get('products.json').then(successCallback, errorCallback);
 
-    function successCallback(data){
+    function successCallback(response){
         //success code
-        console.log(data);
+        console.log(response);
+         store.products = response.data.products;
     }
     function errorCallback(error){
         //error code

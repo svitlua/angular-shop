@@ -30,7 +30,8 @@
     function successCallback(response){
         //success code
         console.log(response);
-         store.products = response.data.products;
+        store.products = response.data.products;
+        console.log(store.products);
     }
     function errorCallback(error){
         //error code

@@ -64,6 +64,7 @@
         //error code
         console.log("Data:"+error);
     }
+    }
   });
 
 
